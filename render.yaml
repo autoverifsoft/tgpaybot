@@ -1,0 +1,24 @@
+# Инфраструктура одним файлом: Render прочитает его при создании Blueprint.
+services:
+  - type: web
+    name: tgpaybot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: CRYPTOBOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SHOP_NAME
+        sync: false
+      - key: SUPPORT_USERNAME
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true
